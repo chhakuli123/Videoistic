@@ -9,7 +9,7 @@ const Head = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="flex justify-between items-center p-3">
+    <div className="flex justify-between items-center p-3 sticky top-0 z-50 bg-white">
       {/* Logo and Hamburgur */}
       <div className="flex">
         <span
