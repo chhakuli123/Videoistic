@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const Body = () => {
   return (
     <div className="flex">
-      <div className="sticky top-0 h-screen">
+      <div>
         <Sidebar />
       </div>
       <Outlet />
