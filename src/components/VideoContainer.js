@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 // Component that fetches and renders the videos
 const VideoContainer = () => {
-  // Initialize state variables for videos and loading status
   const [videos, setVideos] = useState([]);
 
   // Fetch videos on component mount
@@ -19,7 +18,6 @@ const VideoContainer = () => {
     try {
       const data = await fetch(YOUTUBE_VIDEOS_API);
       const json = await data.json();
-      // Set videos and loading status when data is retrieved successfully
       setVideos(json.items);
     } catch (error) {
       console.error(error);
@@ -27,13 +25,16 @@ const VideoContainer = () => {
   };
 
   return (
-    // Render videos or shimmer effect based on loading status
     <div className="flex flex-wrap items-center justify-center h-screen overflow-y-auto">
-      {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id} key={video.id}>
-          <VideoCard info={video} />
-        </Link>
-      ))}
+      {videos ? (
+        videos.map((video) => (
+          <Link to={"/watch?v=" + video.id} key={video.id}>
+            <VideoCard info={video} />
+          </Link>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
