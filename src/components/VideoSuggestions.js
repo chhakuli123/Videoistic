@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { GOOGLE_API_KEY } from "../utils/constants";
 
 // Component that renders a shimmer effect while data is loading
 const Shimmer = () => {
@@ -26,7 +27,7 @@ const VideoSuggestions = ({ videoId }) => {
       try {
         const response = await fetch(
           // Use the YouTube Data API to fetch related video suggestions based on the videoId prop passed in
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=AIzaSyDOw2x1wNwuU9PdYi3ij5Eoc0C-UpsakcU&maxResults=50`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${GOOGLE_API_KEY}-UpsakcU&maxResults=50`
         );
         const data = await response.json();
         setSuggestions(data.items);
