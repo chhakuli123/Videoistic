@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { GOOGLE_API_KEY } from "../utils/constants";
 
 // Component that renders a shimmer effect while data is loading
 const Shimmer = () => {
@@ -22,7 +23,7 @@ const CommentSection = ({ videoId }) => {
       try {
         // Send a request to the YouTube API to retrieve comments for the given video ID
         const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/commentThreads?key=YOUR_API_KEY&textFormat=plainText&part=snippet&videoId=${videoId}&maxResults=50`
+          `https://www.googleapis.com/youtube/v3/commentThreads?key=${GOOGLE_API_KEY}&textFormat=plainText&part=snippet&videoId=${videoId}&maxResults=50`
         );
         const data = await response.json();
         setComments(data.items);
