@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { VIDEO_INFO } from "../utils/constants";
+import { GOOGLE_API_KEY } from "../utils/constants";
 
 const VideoInfo = ({ videoId }) => {
   const [videoInfo, setVideoInfo] = useState(null);
@@ -8,7 +8,9 @@ const VideoInfo = ({ videoId }) => {
   useEffect(() => {
     const fetchVideoInfo = async () => {
       try {
-        const response = await fetch(VIDEO_INFO + videoId);
+        const response = await fetch(
+          `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics&key=${GOOGLE_API_KEY}`
+        );
         const data = await response.json();
         setVideoInfo(data.items[0]);
       } catch (error) {

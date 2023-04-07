@@ -27,7 +27,8 @@ const VideoSuggestions = ({ videoId }) => {
       try {
         const response = await fetch(
           // Use the YouTube Data API to fetch related video suggestions based on the videoId prop passed in
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${GOOGLE_API_KEY}-UpsakcU&maxResults=50`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${GOOGLE_API_KEY}&maxResults=50
+`
         );
         const data = await response.json();
         setSuggestions(data.items);
@@ -41,7 +42,7 @@ const VideoSuggestions = ({ videoId }) => {
 
   // Render the video suggestions
   return (
-    <div className="mb-6 ">
+    <div className="mb-6 ml-8">
       <h2 className="text-xl font-bold mb-4">Video Suggestions</h2>
       <ul className="max-h-[147.8rem] overflow-y-auto border rounded-lg bg-gray-100">
         {suggestions && suggestions.length > 0 ? (

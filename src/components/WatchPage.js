@@ -32,7 +32,7 @@ const WatchPage = () => {
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className={`mb-8 rounded-2xl shadow-xl w-full h-[30rem] md:w-[100%] md:h-[600px] ${
+          className={`mb-8 rounded-2xl shadow-xl w-full h-[30rem] md:w-[58rem] md:h-[600px] ${
             loading ? "hidden" : ""
           }`}
         ></iframe>
