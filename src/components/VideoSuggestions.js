@@ -49,8 +49,7 @@ const VideoSuggestions = ({ videoId }) => {
           suggestions.map((suggestion) => (
             <li key={suggestion.id.videoId}>
               <a
-                href={`https://www.youtube.com/watch?v=${suggestion.id.videoId}`}
-                target="_blank"
+                href={`watch?v=${suggestion.id.videoId}`}
                 rel="noopener noreferrer"
                 className="flex items-center p-3 hover:bg-gray-300 hover:rounded-2xl"
               >
