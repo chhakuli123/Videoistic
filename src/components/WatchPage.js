@@ -11,20 +11,27 @@ const WatchPage = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
+
+  // Close menu on page load
   useEffect(() => {
     dispatch(closeMenu());
   });
 
+  // Handle video load
   const handleLoad = () => {
     setLoading(false);
   };
 
   return (
     <div className="flex flex-wrap mt-4 p-8">
+      {/* Video player */}
       <div className="w-[60rem] lg:w-2/3 px-5">
+        {/* Loading animation */}
         {loading && (
           <div className="animate-pulse h-[600px] w-[60rem] rounded-2xl bg-gray-200"></div>
         )}
+
+        {/* Video player iframe */}
         <iframe
           onLoad={handleLoad}
           src={`https://www.youtube.com/embed/${searchParams.get("v")}`}
@@ -37,12 +44,16 @@ const WatchPage = () => {
           }`}
         ></iframe>
 
+        {/* Video information */}
         <div className="mb-8">
           <VideoInfo videoId={searchParams.get("v")} />
         </div>
 
+        {/* Comment section */}
         <CommentSection videoId={searchParams.get("v")} />
       </div>
+
+      {/* Video suggestions */}
       <div className="lg:w-1/3 px-5">
         <VideoSuggestions videoId={searchParams.get("v")} />
       </div>
