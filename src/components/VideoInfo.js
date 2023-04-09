@@ -6,6 +6,7 @@ const VideoInfo = ({ videoId }) => {
   const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
+    // Fetch video information from YouTube API with videoId and set it in state
     const fetchVideoInfo = async () => {
       try {
         const response = await fetch(
@@ -22,6 +23,7 @@ const VideoInfo = ({ videoId }) => {
   }, [videoId]);
 
   const toggleShowMore = () => {
+    // Toggle showMore state to expand/collapse video description
     setShowMore(!showMore);
   };
 
@@ -29,6 +31,7 @@ const VideoInfo = ({ videoId }) => {
     return <div>Loading...</div>;
   }
 
+  // Truncate description to first 200 characters and add ellipsis, unless showMore state is true
   const description = showMore
     ? videoInfo.snippet.description
     : videoInfo.snippet.description.slice(0, 200) + "...";
@@ -49,6 +52,7 @@ const VideoInfo = ({ videoId }) => {
           Subscribe
         </button>
       </div>
+      {/* Display truncated description with option to show/hide full description */}
       <p className="text-md border-gray-800 bg-slate-200 p-6 rounded-lg text-black">
         {description}
         {videoInfo.snippet.description.length > 200 && (
