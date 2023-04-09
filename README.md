@@ -22,6 +22,7 @@
 - 💬 View comments for videos using the YouTube API
 - 🎥 See video suggestions for the current video using the YouTube API
 - 🔍 Search for videos using the YouTube API and view the results
+- 🎥 Browse videos by category using the YouTube API
 
 ## 🛠️ Installation and Usage
 
