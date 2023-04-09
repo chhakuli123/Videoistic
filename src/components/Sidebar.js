@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
-  //Early return
+  // Early return if the menu is not open
   if (!isMenuOpen) return null;
+
   return (
-    <div className="sticky top-0 w-28 h-full text-gray-900">
+    <div className="top-18 w-28 h-full fixed text-gray-900 bg-white ">
       <ul className="flex flex-col">
+        {/* Home */}
         <li>
           <a
             className="side-bar-items flex flex-col items-center mt-8 py-3 px-2 hover:text-orange-300"
@@ -22,6 +24,7 @@ const Sidebar = () => {
           </a>
         </li>
 
+        {/* Explore */}
         <li>
           <a
             aria-current="page"
@@ -33,6 +36,7 @@ const Sidebar = () => {
           </a>
         </li>
 
+        {/* Playlists */}
         <li>
           <a
             className="side-bar-items flex flex-col items-center mt-4 py-3 px-2 hover:text-orange-300"
@@ -43,6 +47,7 @@ const Sidebar = () => {
           </a>
         </li>
 
+        {/* Liked Videos */}
         <li>
           <a
             className="side-bar-items flex flex-col items-center mt-4 py-3 px-2 hover:text-orange-300"
@@ -53,6 +58,7 @@ const Sidebar = () => {
           </a>
         </li>
 
+        {/* Watch Later */}
         <li>
           <a
             className="side-bar-items flex flex-col items-center mt-4 py-3 px-2 hover:text-orange-300"
@@ -63,6 +69,7 @@ const Sidebar = () => {
           </a>
         </li>
 
+        {/* History */}
         <li>
           <a
             className="side-bar-items flex flex-col items-center mt-4 py-3 px-2 hover:text-orange-300"
