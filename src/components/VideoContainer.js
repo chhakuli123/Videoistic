@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { YOUTUBE_VIDEOS_API } from "../utils/constants";
+import { GOOGLE_API_KEY } from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Component that displays a loading card
 const LoadingCard = () => {
@@ -28,18 +29,19 @@ const LoadingCard = () => {
 };
 
 const VideoContainer = () => {
+  const { selectedCategoryID } = useSelector((state) => state.categories);
+
   const [videos, setVideos] = useState([]);
 
   // Set loading state
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    getVideos();
-  }, []);
-
-  const getVideos = async () => {
+  const getVideos = async (categoryID) => {
     try {
-      const data = await fetch(YOUTUBE_VIDEOS_API);
+      setIsLoading(true); // Set loading state to true
+      const data = await fetch(
+        ` https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=${categoryID}&key=${GOOGLE_API_KEY}`
+      );
       const json = await data.json();
       setVideos(json.items);
       setIsLoading(false); // Set loading state to false once videos are fetched
@@ -48,12 +50,21 @@ const VideoContainer = () => {
     }
   };
 
+  useEffect(() => {
+    if (selectedCategoryID) {
+      getVideos(selectedCategoryID);
+    } else {
+      getVideos(0); // Fetch most popular videos if no category is selected
+    }
+  }, [selectedCategoryID]);
+
   return (
     <div className="flex flex-wrap items-center justify-center h-screen overflow-y-auto">
       {/* Conditionally render VideoCard or LoadingCard components */}
       {isLoading
         ? Array.from(Array(50)).map((_, index) => <LoadingCard key={index} />)
-        : videos.map((video) => (
+        : videos &&
+          videos.map((video) => (
             <Link to={"/watch?v=" + video.id} key={video.id}>
               <VideoCard info={video} />
             </Link>
